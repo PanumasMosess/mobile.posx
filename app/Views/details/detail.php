@@ -25,8 +25,8 @@
 
     <!-- Stylesheets -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <link rel="stylesheet" href="<?php echo base_url('assets/vendor/swiper/swiper-bundle.min.css'); ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/vendor/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/vendors/swiper/swiper-bundle.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/vendors/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css'); ?>">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -179,10 +179,10 @@
     Scripts
 ***********************************-->
     <script src="<?php echo base_url('assets/js/jquery.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/vendor/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/vendors/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
     <script src="<?php echo base_url('assets/js/dz.carousel.js'); ?>"></script><!-- Swiper -->
-    <script src="<?php echo base_url('assets/vendor/swiper/swiper-bundle.min.js'); ?>"></script><!-- Swiper -->
-    <script src="<?php echo base_url('assets/vendor/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js'); ?>"></script><!-- Swiper -->
+    <script src="<?php echo base_url('assets/vendors/swiper/swiper-bundle.min.js'); ?>"></script><!-- Swiper -->
+    <script src="<?php echo base_url('assets/vendors/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js'); ?>"></script><!-- Swiper -->
     <script src="<?php echo base_url('assets/js/settings.js'); ?>"></script>
     <script src="<?php echo base_url('assets/js/custom.js'); ?>"></script>
     <script>
