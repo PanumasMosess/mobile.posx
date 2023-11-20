@@ -24,10 +24,10 @@
     </title>
 
     <!-- Global CSS -->
-    <link href="<?php echo base_url('assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css'); ?>" rel="stylesheet" />
-    <link rel="stylesheet" href="<?php echo base_url('assets/vendor/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css'); ?>" />
-    <link rel="stylesheet" href="<?php echo base_url('assets/vendor/nouislider/nouislider.min.css'); ?>" />
-    <link rel="stylesheet" href="<?php echo base_url('assets/vendor/swiper/swiper-bundle.min.css'); ?>" />
+    <link href="<?php echo base_url('assets/vendors/bootstrap-select/dist/css/bootstrap-select.min.css'); ?>" rel="stylesheet" />
+    <link rel="stylesheet" href="<?php echo base_url('assets/vendors/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css'); ?>" />
+    <link rel="stylesheet" href="<?php echo base_url('assets/vendors/nouislider/nouislider.min.css'); ?>" />
+    <link rel="stylesheet" href="<?php echo base_url('assets/vendors/swiper/swiper-bundle.min.css'); ?>" />
 
     <!-- Stylesheets -->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/style.css'); ?>" />
