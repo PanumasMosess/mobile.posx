@@ -24,7 +24,7 @@
 
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/style.css?v=' . time()); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/vendors/swiper/swiper-bundle.min.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/vendors/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css'); ?>">
 

@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/vendors/swiper/swiper-bundle.min.css'); ?>" />
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/style.css'); ?>" />
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/style.css?v=' . time()); ?>" />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
