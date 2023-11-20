@@ -26,7 +26,7 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/style.css?v=' . time()); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/vendors/swiper/swiper-bundle.min.css'); ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/vendors/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/vendors/bootstrap-touchspin/dists/jquery.bootstrap-touchspin.min.css'); ?>">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -182,7 +182,7 @@
     <script src="<?php echo base_url('assets/vendors/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
     <script src="<?php echo base_url('assets/js/dz.carousel.js'); ?>"></script><!-- Swiper -->
     <script src="<?php echo base_url('assets/vendors/swiper/swiper-bundle.min.js'); ?>"></script><!-- Swiper -->
-    <script src="<?php echo base_url('assets/vendors/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js'); ?>"></script><!-- Swiper -->
+    <script src="<?php echo base_url('assets/vendors/bootstrap-touchspin/dists/jquery.bootstrap-touchspin.min.js'); ?>"></script><!-- Swiper -->
     <script src="<?php echo base_url('assets/js/settings.js'); ?>"></script>
     <script src="<?php echo base_url('assets/js/custom.js'); ?>"></script>
     <script>
