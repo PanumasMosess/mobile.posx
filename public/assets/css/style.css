@@ -70,11 +70,11 @@
 	==============
 ========================= */
 /*==== 1. Abstracts ====*/
-@import url("./../vendor/fontawesome/css/all.min.css");
-@import url("./../vendor/flaticon/flaticon.css");
-@import url("./../vendor/uicons-solid-rounded/css/uicons-solid-rounded.css");
-@import url("./../vendor/line-awesome/css/line-awesome.min.css");
-@import url("./../vendor/themify-icons/css/themify-icons.css");
+@import url("./../vendors/fontawesome/css/all.min.css");
+@import url("./../vendors/flaticon/flaticon.css");
+@import url("./../vendors/uicons-solid-rounded/css/uicons-solid-rounded.css");
+@import url("./../vendors/line-awesome/css/line-awesome.min.css");
+@import url("./../vendors/themify-icons/css/themify-icons.css");
 :root {
   --primary: #42A7E5;
   --secondary: #FF6B53;
