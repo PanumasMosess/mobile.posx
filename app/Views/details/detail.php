@@ -123,7 +123,7 @@
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                             </div>
                         </div>
-                        <ul class="item-inner">
+                        <!-- <ul class="item-inner">
                             <li>
                                 <div class="reviews-info">
                                     <i class="fa fa-star"></i>
@@ -140,7 +140,7 @@
                                     <h6 class="mb-0 ms-2">FREE DELIVERY</h6>
                                 </a>
                             </li>
-                        </ul>
+                        </ul> -->
                     </div>
                     <div class="item-list-2">
                         <div class="price">

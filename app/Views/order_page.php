@@ -15,8 +15,8 @@
           </div>
           <div class="swiper-btn-center-lr">
               <div class="swiper-container mt-4 categorie-swiper">
-                  <div class="swiper-wrapper">
-                      <div class="swiper-slide">
+                  <div id='group_tab' class="swiper-wrapper">
+                      <!-- <div class="swiper-slide">
                           <a href="javascript:void(0);" class="categore-box style-2 primary">
                               <div class="icon-bx">
                                   <svg width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -31,8 +31,8 @@
                               </div>
                               <span class="title">Foods</span>
                           </a>
-                      </div>
-                      <div class="swiper-slide">
+                      </div> -->
+                      <!-- <div class="swiper-slide">
                           <a href="javascript:void(0);" class="categore-box style-2 secondary">
                               <div class="icon-bx">
                                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -45,7 +45,7 @@
                               </div>
                               <span class="title">Drink</span>
                           </a>
-                      </div>
+                      </div> -->
                   </div>
               </div>
           </div>
