@@ -23,4 +23,9 @@ class OrderController extends BaseController
         $data['title'] = 'Menu';
         echo view('/app', $data);
     }
+
+    public function product_detail($order_code = null)
+    {
+        return view('details/detail');
+    }
 }

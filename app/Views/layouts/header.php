@@ -20,7 +20,7 @@
 
     <!-- Title -->
     <title>
-        POSX Mobile Order
+        POSX Order
     </title>
 
     <!-- Global CSS -->
