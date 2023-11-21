@@ -14,6 +14,11 @@
 <script src="<?php echo base_url('assets/js/settings.js'); ?>"></script>
 <!-- setting.js -->
 <script src="<?php echo base_url('assets/js/custom.js'); ?>"></script>
+
+<?php if (isset($js_critical)) {
+    echo $js_critical;
+}; ?>
+
 <script>
     $(".stepper").TouchSpin();
 </script>

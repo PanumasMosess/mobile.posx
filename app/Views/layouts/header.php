@@ -36,6 +36,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Roboto+Slab:wght@100;300;500;600;800&display=swap" rel="stylesheet" />
+    <script>
+        var serverUrl = '<?php echo base_url(); ?>'
+    </script>
 </head>
 
 <body class="bg-white">
