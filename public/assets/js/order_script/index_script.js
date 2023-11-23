@@ -2,6 +2,7 @@ var searchParams = window.location.pathname;
 var searchParams_ = searchParams.split("/home/");
 (function ($) {
   loadTypeMenu(searchParams_[1]);
+  loadMenu(searchParams_[1]);
 })(jQuery);
 
 function loadTypeMenu(code) {
@@ -53,6 +54,72 @@ function loadTypeMenu(code) {
           "<div class='swiper-slide'>" + color_type + "</div>&nbsp;";
       }
       $("#group_tab").html(group_html);
+    },
+  });
+}
+
+function loadMenu(code) {
+  let code_array = code.split("_");
+
+  $.ajax({
+    url: serverUrl + "/orderMenu/" + code_array[1],
+    method: "get",
+    success: function (response) {
+      let html_menu = "";
+      for (let index = 0; index < response.data.length; index++) {
+        html_menu +=
+          "<h4 class='title my-4'>" +
+          "<a href='" +
+          serverUrl +
+          "details/111" +
+          "'>" +
+          response.data[index].order_name +
+          "</a>" +
+          "</h4>" +
+          "<ul>" +
+          "<li>" +
+          "<div class='item-content'>" +
+          "<div class='item-inner'>" +
+          " <div class='item-title-row'>" +
+          " <h6 class='item-title'>" +
+          "<a href='" +
+          serverUrl +
+          "details/111" +
+          "'>" +
+          response.data[index].order_des +
+          "</a>" +
+          "</h6>" +
+          "<div class='item-subtitle'>Coffe, Milk</div>" +
+          "</div>" +
+          "<div class='item-footer'>" +
+          "<div class='d-flex align-items-center'>" +
+          "<h6 class='me-3'>฿ " +
+          response.data[index].order_price +
+          "</h6>" +
+          "<del class='off-text'>" +
+          "<h6>฿ " +
+          "0.00" +
+          "</h6>" +
+          "</del>" +
+          "</div>" +
+          "<div class='d-flex align-items-center'>" +
+          "<i class='fa-solid fa-star'></i>" +
+          "<h6>4.5</h6>" +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          "<div class='item-media media media-90'>" +
+          "<img src='" +
+          CDN_IMG +
+          "/uploads/temps_order/" + response.data[index].src_order_picture +
+          "' alt='logo' />" +
+          "</div>" +
+          "</div>" +
+          "</li>" +
+          "</ul>" +
+          "<div class='saprater'></div>";
+      }
+      $("#menu_order").html(html_menu);
     },
   });
 }

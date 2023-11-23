@@ -41,4 +41,14 @@ class OrderController extends BaseController
             'data' => $list_order_type
         ]);
     }
+
+    public function getMenu($id_company = null)
+    {
+        $list_menu =  $this->MobileOrderModel->getMenu($id_company);
+        return $this->response->setJSON([
+            'status' => 200,
+            'error' => false,
+            'data' => $list_menu
+        ]);
+    }
 }
