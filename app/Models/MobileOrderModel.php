@@ -20,8 +20,10 @@ class MobileOrderModel
         return $builder->getResult();
     }
 
-    public function getMenu()
+    public function getMenu($id_company = null)
     {
-        
+        $sql = "SELECT * FROM `order` WHERE companies_id = '$id_company' AND order_status != 'CANCEL_ORDER' ORDER BY id DESC";
+        $builder = $this->db->query($sql);
+        return $builder->getResult();
     }
 }
