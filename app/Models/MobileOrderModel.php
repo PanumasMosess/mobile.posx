@@ -40,4 +40,19 @@ class MobileOrderModel
         $builder = $this->db->query($sql);
         return $builder->getRow();
     }
+
+    public function insertOrderCart($data = null)
+    {
+        $builder_cart = $this->db->table('posx_cart');
+        $builder_cart_status = $builder_cart->insert($data);
+
+        return ($builder_cart_status) ? true : false;
+    }
+
+    public function getOrderCart($compnies_code = null, $table_code = null)
+    {
+        $sql = "SELECT * FROM `posx_cart` WHERE order_customer_table_code = '$table_code' AND companies_id = '$compnies_code' ORDER BY id DESC";
+        $builder = $this->db->query($sql);
+        return $builder->getResult();
+    }
 }

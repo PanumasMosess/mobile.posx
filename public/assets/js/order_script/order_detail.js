@@ -1,7 +1,20 @@
 var searchParams = window.location.pathname;
 var searchParams_ = searchParams.split("/details/");
+var order_code = "";
+var order_order_name = "";
+var order_price = 0;
+var order_table_code = "";
+var order_companies_id = 0;
+var src_order_picture = "";
+var order_customer_des = "";
 (function ($) {
-  loadDetail(searchParams_[1]);
+  let code_array = searchParams_[1].split("_");
+  let id = code_array[0];
+  let table = code_array[1];
+  let companies_id = code_array[2];
+  loadDetail(id);
+  order_table_code = table;
+  order_companies_id = companies_id;
 })(jQuery);
 
 function loadDetail(id_menu) {
@@ -9,6 +22,11 @@ function loadDetail(id_menu) {
     url: serverUrl + "/orderMenuDetail/" + id_menu,
     method: "get",
     success: function (response) {
+      order_code = response.data.order_code;
+      order_order_name = response.data.order_name;
+      order_price = response.data.order_price;
+      src_order_picture = response.data.src_order_picture;  
+      order_customer_des = response.data.order_des; 
       let html_menu_detail =
         "<div class='content-body fb'>" +
         "<div class='swiper-btn-center-lr my-0'>" +
@@ -94,7 +112,7 @@ function loadDetail(id_menu) {
         "</del></h3>" +
         "</div>" +
         "<div class='dz-stepper border-1 col-5'>" +
-        "<input class='stepper' type='text' value='1' name='demo3'>" +
+        "<input class='stepper' type='text' value='1' id='pcs_to_car' name='demo3'>" +
         "</div>" +
         "</div>" +
         "<div class='d-flex align-items-center justify-content-between'>" +
@@ -105,6 +123,37 @@ function loadDetail(id_menu) {
         "</div>";
       $("#detail_context").html(html_menu_detail);
       $(".stepper").TouchSpin();
+    },
+  });
+}
+
+function getToCart() {
+  var pcs = $("#pcs_to_car").val();
+  arr_data_cart = [
+    {
+      table_code: order_table_code,
+      pcs: pcs,
+      order_code: order_code,
+      order_order_name: order_order_name,
+      order_price: order_price,
+      order_companies_id: order_companies_id,
+      src_order_picture: src_order_picture,
+      order_customer_des: order_customer_des
+    },
+  ];
+
+  $.ajax({
+    url: serverUrl + "insertCart",
+    method: "post",
+    data: {
+      data: arr_data_cart,
+    },
+    cache: false,
+    success: function (response) {
+      if (response.message == "เพิ่มสำเร็จ") {
+        window.history.go(-1);
+        return false;
+      }
     },
   });
 }
