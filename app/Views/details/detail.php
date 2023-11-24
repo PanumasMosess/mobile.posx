@@ -35,6 +35,21 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Roboto+Slab:wght@100;300;500;600;800&display=swap" rel="stylesheet">
 
+    <script>
+        var serverUrl = '<?php echo base_url(); ?>'
+        var CDN_IMG = '<?php echo getenv('CDN_IMG'); ?>'
+    </script>
+    <style>
+        .back_btn_none {
+            display: flex;
+            line-height: 1;
+            font-size: 16px;
+            width: 35px;
+            height: 35px;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
 </head>
 
 <body class="bg-white">
@@ -52,12 +67,12 @@
                 <div class="container">
                     <div class="header-content">
                         <div class="left-content">
-                            <a href="javascript:void(0);" class="back-btn">
+                            <a href="javascript:void(0);" class="back_btn_none">
                                 <svg width="18" height="18" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M9.03033 0.46967C9.2966 0.735936 9.3208 1.1526 9.10295 1.44621L9.03033 1.53033L2.561 8L9.03033 14.4697C9.2966 14.7359 9.3208 15.1526 9.10295 15.4462L9.03033 15.5303C8.76406 15.7966 8.3474 15.8208 8.05379 15.6029L7.96967 15.5303L0.96967 8.53033C0.703403 8.26406 0.679197 7.8474 0.897052 7.55379L0.96967 7.46967L7.96967 0.46967C8.26256 0.176777 8.73744 0.176777 9.03033 0.46967Z" fill="#fff" />
+                                    <path d="M9.03033 0.46967C9.2966 0.735936 9.3208 1.1526 9.10295 1.44621L9.03033 1.53033L2.561 8L9.03033 14.4697C9.2966 14.7359 9.3208 15.1526 9.10295 15.4462L9.03033 15.5303C8.76406 15.7966 8.3474 15.8208 8.05379 15.6029L7.96967 15.5303L0.96967 8.53033C0.703403 8.26406 0.679197 7.8474 0.897052 7.55379L0.96967 7.46967L7.96967 0.46967C8.26256 0.176777 8.73744 0.176777 9.03033 0.46967Z" fill="#a19fa8"></path>
                                 </svg>
                             </a>
-                            <h5 class="mb-0 ms-2 text-nowrap">Detail</h5>
+                            <h5 class="mb-0 ms-2 text-nowrap" style="color: #4f658b;">DETAIL</h5>
                         </div>
                         <div class="mid-content">
                         </div>
@@ -76,87 +91,7 @@
 
 
         <!-- Page Content -->
-        <div class="page-content">
-            <div class="content-body fb">
-                <div class="swiper-btn-center-lr my-0">
-                    <div class="swiper-container demo-swiper">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="dz-banner-heading">
-                                    <div class="overlay-black-light">
-                                        <img src="<?php echo base_url('assets/images/food/pic6.png'); ?>" class="bnr-img" alt="bg-image">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="dz-banner-heading">
-                                    <div class="overlay-black-light">
-                                        <img src="<?php echo base_url('assets/images/food/pic6.png'); ?>" class="bnr-img" alt="bg-image">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="dz-banner-heading">
-                                    <div class="overlay-black-light">
-                                        <img src="<?php echo base_url('assets/images/food/pic6.png'); ?>" class="bnr-img" alt="bg-image">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="dz-banner-heading">
-                                    <div class="overlay-black-light">
-                                        <img src="<?php echo base_url('assets/images/food/pic6.png'); ?>" class="bnr-img" alt="bg-image">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-btn">
-                            <div class="swiper-pagination style-2 flex-1"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="company-detail">
-                        <div class="detail-content">
-                            <div class="flex-1">
-                                <h4>Chicken Briyani</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                            </div>
-                        </div>
-                        <!-- <ul class="item-inner">
-                            <li>
-                                <div class="reviews-info">
-                                    <i class="fa fa-star"></i>
-                                    <h6 class="reviews">4.5</h6>
-                                </div>
-                            </li>
-                            <li>
-                                <i class="fa-solid fa-clock"></i>
-                                <h6 class="mb-0 ms-2">6-7 Min</h6>
-                            </li>
-                            <li>
-                                <a class="d-flex delivery" href="javascript:void(0);">
-                                    <i class="fa-solid fa-truck"></i>
-                                    <h6 class="mb-0 ms-2">FREE DELIVERY</h6>
-                                </a>
-                            </li>
-                        </ul> -->
-                    </div>
-                    <div class="item-list-2">
-                        <div class="price">
-                            <span class="text-style">Price</span>
-                            <h3>$5.8 <del>$8.0</del></h3>
-                        </div>
-                        <div class="dz-stepper border-1 col-5">
-                            <input class="stepper" type="text" value="3" name="demo3">
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div class="badge badge-danger font-w400 px-3">20% OFF DISCOUNT</div>
-                        <a href="javascript:void(0);" class="btn-link font-16">Apply promo code</a>
-                    </div>
-                </div>
-            </div>
+        <div id="detail_context" class="page-content">
         </div>
         <!-- Page Content End -->
 
@@ -185,11 +120,9 @@
     <script src="<?php echo base_url('assets/js/dz.carousel.js'); ?>"></script><!-- Swiper -->
     <script src="<?php echo base_url('assets/vendors/swiper/swiper-bundle.min.js'); ?>"></script><!-- Swiper -->
     <script src="<?php echo base_url('assets/vendors/bootstrap-touchspin/dists/jquery.bootstrap-touchspin.min.js'); ?>"></script><!-- Swiper -->
-    <script src="<?php echo base_url('assets/js/settings.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/custom.js'); ?>"></script>
-    <script>
-        $(".stepper").TouchSpin();
-    </script>
+    <script src="<?php echo base_url('assets/js/settings.js?v=' . time()); ?>"></script>
+    <script src="<?php echo base_url('assets/js/custom.js?v=' . time()); ?>"></script>
+    <script src="<?php echo base_url('assets/js/order_script/order_detail.js?v=' . time()); ?>"></script>
 </body>
 
 </html>
