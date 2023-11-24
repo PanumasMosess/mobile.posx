@@ -3,6 +3,10 @@ var searchParams_ = searchParams.split("/home/");
 (function ($) {
   loadTypeMenu(searchParams_[1]);
   loadMenu(searchParams_[1]);
+  let code_array = searchParams_[1].split("_");
+  let companies = code_array[1];
+  let table_code = code_array[0];
+  loadCart(companies, table_code);
 })(jQuery);
 
 function loadTypeMenu(code) {
@@ -73,6 +77,8 @@ function loadMenu(code) {
           serverUrl +
           "details/" +
           response.data[index].id +
+          "_" +
+          searchParams_[1] +
           "'>" +
           response.data[index].order_name +
           "</a>" +
@@ -134,6 +140,70 @@ function loadMenu(code) {
           response.data.table_name +
           " 👋</h3>"
       );
+    },
+  });
+}
+
+function loadCart(companies, table_code) {
+  get_data_cart = [
+    {
+      companies: companies,
+      table_code: table_code,
+    },
+  ];
+  $.ajax({
+    url: serverUrl + "orderCart",
+    method: "post",
+    data: {
+      data: get_data_cart,
+    },
+    cache: false,
+    success: function (response) {
+      $("#num_cart").html(
+        "<font id='num_cart' >" + response.data.length + "</font>"
+      );
+      let html_menu = "";
+      for (let index = 0; index < response.data.length; index++) {
+        html_menu +=
+          "<li>" +
+          "<div class='item-content'>" +
+          "<div class='item-media media media-60'>" +
+          "<img src='" +
+          CDN_IMG +
+          "/uploads/temps_order/" +
+          response.data[index].src_order_picture +
+          "' alt='logo'>" +
+          "</div>" +
+          "<div class='item-inner'>" +
+          "<div class='item-title-row'>" +
+          "<h6 class='item-title'>" +
+          response.data[index].order_customer_ordername +
+          "</h6>" +
+          // "<div class='item-subtitle'>Coffe, Milk</div>" +
+          "</div>" +
+          "<div class='item-footer'>" +
+          "<div class='d-flex align-items-center'>" +
+          "<h6 class='me-3'>฿ " +
+          response.data[index].order_customer_price +
+          "</h6>" +
+          "<del class='off-text'>" +
+          // "<h6>$ 8.9</h6>" +
+          "</del>" +
+          "</div>" +
+          "<div class='d-flex align-items-center'>" +
+          "<div class='dz-stepper border-1 col-5'>" +
+          "<input class='stepper' type='text' value='" +
+          response.data[index].order_customer_pcs +
+          "' name='demo3'>" +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          "</li> ";
+      }
+      $("#list_card").html(html_menu);
+      $(".stepper").TouchSpin();
     },
   });
 }
