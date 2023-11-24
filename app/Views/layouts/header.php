@@ -88,7 +88,7 @@
     <div class="author-notification">
         <div class="container inner-wrapper">
             <div class="dz-info">
-                <h3 class="name mb-0">Table name 👋</h3>
+                <h3 id='name_table' class="name mb-0">Table name 👋</h3>
             </div>
             <a href="javascript:void(0);" class="position-relative me-2 notify-cart" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom2" aria-controls="offcanvasBottom">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

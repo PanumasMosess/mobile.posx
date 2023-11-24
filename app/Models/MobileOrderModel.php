@@ -26,4 +26,18 @@ class MobileOrderModel
         $builder = $this->db->query($sql);
         return $builder->getResult();
     }
+
+    public function orderMenuDetail($id = null)
+    {
+        $sql = "SELECT * FROM `order` WHERE id = '$id' AND order_status != 'CANCEL_ORDER' ORDER BY id DESC";
+        $builder = $this->db->query($sql);
+        return $builder->getRow();
+    }
+
+    public function getTableDynamic($code = null)
+    {
+        $sql = "SELECT * FROM `table_dynamic` WHERE table_code = '$code' AND table_status != 'USE' ORDER BY id DESC";
+        $builder = $this->db->query($sql);
+        return $builder->getRow();
+    }
 }

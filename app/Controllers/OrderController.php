@@ -51,4 +51,24 @@ class OrderController extends BaseController
             'data' => $list_menu
         ]);
     }
+
+    public function orderMenuDetail($id_detail = null)
+    {
+        $data =  $this->MobileOrderModel->orderMenuDetail($id_detail);
+        return $this->response->setJSON([
+            'status' => 200,
+            'error' => false,
+            'data' => $data
+        ]);
+    }
+
+    public function getTableDynamic($table_code = null)
+    {
+        $data =  $this->MobileOrderModel->getTableDynamic($table_code);
+        return $this->response->setJSON([
+            'status' => 200,
+            'error' => false,
+            'data' => $data
+        ]);
+    }
 }

@@ -71,7 +71,8 @@ function loadMenu(code) {
           "<h4 class='title my-4'>" +
           "<a href='" +
           serverUrl +
-          "details/111" +
+          "details/" +
+          response.data[index].id +
           "'>" +
           response.data[index].order_name +
           "</a>" +
@@ -111,8 +112,9 @@ function loadMenu(code) {
           "<div class='item-media media media-90'>" +
           "<img src='" +
           CDN_IMG +
-          "/uploads/temps_order/" + response.data[index].src_order_picture +
-          "' alt='logo' />" +
+          "/uploads/temps_order/" +
+          response.data[index].src_order_picture +
+          "' alt='logo' width='100' height='100' />" +
           "</div>" +
           "</div>" +
           "</li>" +
@@ -120,6 +122,18 @@ function loadMenu(code) {
           "<div class='saprater'></div>";
       }
       $("#menu_order").html(html_menu);
+    },
+  });
+
+  $.ajax({
+    url: serverUrl + "/getTableDynamic/" + code_array[0],
+    method: "get",
+    success: function (response) {
+      $("#name_table").html(
+        "<h3 id='name_table' class='name mb-0'>" +
+          response.data.table_name +
+          " 👋</h3>"
+      );
     },
   });
 }

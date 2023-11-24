@@ -9,4 +9,6 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/home/(:any)', 'OrderController::index');
 $routes->get('/details/(:any)', 'OrderController::product_detail/$1');
 $routes->get('/orderType/(:any)', 'OrderController::getOrderType/$1');
-$routes->get('/orderMenu/(:any)', 'OrderController::getMenu/$1');
+$routes->get('/orderMenu/(:any)', 'OrderController::getMenu/$1');   
+$routes->get('/getTableDynamic/(:any)', 'OrderController::getTableDynamic/$1'); 
+$routes->get('/orderMenuDetail/(:any)', 'OrderController::orderMenuDetail/$1'); 

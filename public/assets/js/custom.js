@@ -145,7 +145,7 @@ var Foodia = function(){
     
     // Page back btn
 	var handleGoBack = function(){
-		$('.back-btn').on('click',function(){
+		$('.back-btn, .back_btn_none').on('click',function(){
 			window.history.go(-1); return false
 		})        
     }
