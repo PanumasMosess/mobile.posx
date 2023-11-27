@@ -124,7 +124,10 @@ function loadMenu(code) {
           " <h6 class='item-title'>" +
           "<a href='" +
           serverUrl +
-          "details/111" +
+          "details/" +
+          response.data[index].id_order +
+          "_" +
+          searchParams_[1] +
           "'>" +
           response.data[index].order_des +
           "</a>" +
@@ -343,7 +346,10 @@ function loadMenuBytype(id) {
           " <h6 class='item-title'>" +
           "<a href='" +
           serverUrl +
-          "details/111" +
+          "details/" +
+          response.data[index].id_order +
+          "_" +
+          searchParams_[1] +
           "'>" +
           response.data[index].order_des +
           "</a>" +
@@ -425,7 +431,10 @@ function searchOrder()
           " <h6 class='item-title'>" +
           "<a href='" +
           serverUrl +
-          "details/111" +
+          "details/" +
+          response.data[index].id_order +
+          "_" +
+          searchParams_[1] +
           "'>" +
           response.data[index].order_des +
           "</a>" +
