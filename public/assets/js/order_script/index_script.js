@@ -4,6 +4,7 @@ var sum_price_upload_old = 0;
 var sum_pcs_upload_old = 0;
 var companies,
   table_code = "";
+var array_cart = [];
 
 (function ($) {
   loadTypeMenu(searchParams_[1]);
@@ -256,6 +257,25 @@ function loadCart(companies, table_code) {
         sum_pcs_upload_old += parseFloat(
           response.data[index].order_customer_pcs
         );
+
+        array_cart_temp = [
+          {
+            order_customer_ordername:
+              response.data[index].order_customer_ordername,
+            order_customer_des: "",
+            order_customer_pcs: parseFloat(
+              response.data[index].order_customer_pcs
+            ),
+            order_code: response.data[index].order_code,
+            order_customer: "",
+            order_customer_table_code: table_code,
+            created_by: table_code,
+            companies_id: companies,
+            order_price_sum: total,
+            order_status: "IN_KITCHEN",
+          },
+        ];
+        array_cart.push(array_cart_temp);
       }
 
       $("#list_card").html(html_menu);
@@ -392,9 +412,8 @@ function loadMenuBytype(id) {
   });
 }
 
-function searchOrder()
-{
-  let data_name = $('#search_order').val();
+function searchOrder() {
+  let data_name = $("#search_order").val();
   arr_data = [
     {
       name: data_name,
@@ -473,6 +492,20 @@ function searchOrder()
           "<div class='saprater'></div>";
       }
       $("#menu_order").html(html_menu);
+    },
+  });
+}
+
+function confrimCart() {
+  $.ajax({
+    url: serverUrl + "orderCustomerInsert",
+    method: "post",
+    data: {
+      data: array_cart,
+    },
+    cache: false,
+    success: function (response) {
+      location.reload();
     },
   });
 }

@@ -16,4 +16,5 @@ $routes->get('/orderMenuDetail/(:any)', 'OrderController::orderMenuDetail/$1');
 $routes->post('insertCart', 'OrderController::insertCart');  
 $routes->post('orderCart', 'OrderController::getOrderCart');   
 $routes->post('orderCartUpdate', 'OrderController::orderCartUpdate'); 
-$routes->post('orderMenuSearch', 'OrderController::orderMenuSearch');
+$routes->post('orderMenuSearch', 'OrderController::orderMenuSearch');  
+$routes->post('orderCustomerInsert', 'OrderController::insertOrderCustomer');

@@ -39,7 +39,7 @@ class MobileOrderModel
 
     public function getTableDynamic($code = null)
     {
-        $sql = "SELECT * FROM `table_dynamic` WHERE table_code = '$code' AND table_status != 'USE' ORDER BY id DESC";
+        $sql = "SELECT * FROM `table_dynamic` WHERE table_code = '$code'  ORDER BY id DESC";
         $builder = $this->db->query($sql);
         return $builder->getRow();
     }
@@ -54,7 +54,7 @@ class MobileOrderModel
 
     public function getOrderCart($compnies_code = null, $table_code = null)
     {
-        $sql = "SELECT * FROM `posx_cart` WHERE order_customer_table_code = '$table_code' AND companies_id = '$compnies_code' ORDER BY id DESC";
+        $sql = "SELECT * FROM `posx_cart` WHERE order_customer_table_code = '$table_code' AND companies_id = '$compnies_code' AND  order_customer_status = 'CART' ORDER BY id DESC";
         $builder = $this->db->query($sql);
         return $builder->getResult();
     }
@@ -105,5 +105,119 @@ class MobileOrderModel
         ORDER BY `order`.id DESC";
         $builder = $this->db->query($sql);
         return $builder->getResult();
+    }
+
+    public function getStatusOrderRunning($order_code, $order_customer_table_code)
+    {
+        $sql = "SELECT (IF(EXISTS(SELECT * FROM order_customer 
+        WHERE  order_code ='$order_code' and  order_customer_status = 'IN_KITCHEN'
+        and order_customer_table_code = '$order_customer_table_code'),'true','false' ))  
+        AS result";
+
+        $builder = $this->db->query($sql);
+        return $builder->getRow();
+    }
+
+    public function getStatusOrderSummary($order_customer_table_code)
+    {
+        $sql = "SELECT (IF(EXISTS(SELECT * FROM order_summary 
+        WHERE  order_status = 'IN_KITCHEN'
+        and order_table_code = '$order_customer_table_code'), 'true','false' ))  
+        AS result";
+
+        $builder = $this->db->query($sql);
+        return $builder->getRow();
+    }
+
+    public function getOrderSummaryRuning($order_customer_table_code)
+    {
+        $sql = "SELECT * FROM order_summary  WHERE 
+        order_status = 'IN_KITCHEN' and 
+        order_table_code = '$order_customer_table_code'";
+
+        $builder = $this->db->query($sql);
+        return $builder->getRow();
+    }
+
+    public function insertOrderPrintLog($data){
+        $builder_print = $this->db->table('order_print_log');
+        $builder_print_status = $builder_print->insert($data);
+
+        return ($builder_print_status) ? true : false;
+    }
+
+    public function getCodeCustomerOrder()
+    {
+        $sql = "SELECT SUBSTRING(order_customer_code, 5,8) as substr_order_cus_code  FROM order_customer_running order by id desc LIMIT 1";
+        $builder = $this->db->query($sql);
+        return $builder->getResult();
+    }
+
+    public function getOrderRunning($order_code, $order_customer_table_code)
+    {
+        $sql = "SELECT * FROM order_customer  WHERE 
+        order_code ='$order_code' and  
+        order_customer_status = 'IN_KITCHEN' and 
+        order_customer_table_code = '$order_customer_table_code'";
+
+        $builder = $this->db->query($sql);
+        return $builder->getRow();
+    }
+
+    public function updateOrderCustomer($data_order, $order_code,  $order_customer_table_code)
+    {
+        $builder_order_update = $this->db->table('order_customer');
+        $array_order_update = array('order_code' => $order_code, 'order_customer_status' => 'IN_KITCHEN', 'order_customer_table_code' => $order_customer_table_code, 'order_customer_des' => '');
+        $builder_order_update_status = $builder_order_update->where($array_order_update)->update($data_order);
+        return ($builder_order_update_status) ? true : false;
+    }
+
+    public function updateOrderCustomerSummary($data_order, $order_customer_table_code)
+    {
+        $builder_order_sum_update = $this->db->table('order_summary');
+        $array_order_sum_update = array('order_status' => 'IN_KITCHEN', 'order_table_code' => $order_customer_table_code);
+        $builder_order_sum_update_status = $builder_order_sum_update->where($array_order_sum_update)->update($data_order);
+        return ($builder_order_sum_update_status) ? true : false;
+    }
+
+    public function insertOrderCustomer($data, $running, $datacount = null, $status)
+    {
+        $builder_table = $this->db->table('order_customer');
+        $builder_table_status = $builder_table->insert($data);
+
+        if (($datacount == 0) && ($status == null)) {
+            $builder_running = $this->db->table('order_customer_running');
+            $builder_running_status = $builder_running->insert($running);
+        }
+
+
+        return ($builder_table_status) ? true : false;
+    }
+
+    public function insertOrderCustomerSummary($data, $table, $table_code)
+    {
+        $builder_summary = $this->db->table('order_summary');
+        $builder_summary_status = $builder_summary->insert($data);
+
+        $builder_table = $this->db->table('table_dynamic');
+        $builder_table_status =  $builder_table->where('table_code', $table_code)->update($table);
+
+        return ($builder_summary_status && $builder_table_status)  ? true : false;
+    }
+
+    public function updateCartStatus($data_order, $order_customer_table_code)
+    {
+        $builder_order_sum_update = $this->db->table('posx_cart');
+        $array_order_sum_update = array('order_customer_status' => 'CART', 'order_customer_table_code' => $order_customer_table_code);
+        $builder_order_sum_update_status = $builder_order_sum_update->where($array_order_sum_update)->update($data_order);
+        return ($builder_order_sum_update_status) ? true : false;
+    }
+
+    public function insertMobileStatusPrint($data)
+    {
+        $builder_summary = $this->db->table('posx_mobile_status_print');
+        $builder_summary_status = $builder_summary->insert($data);
+
+        return ($builder_summary_status)  ? true : false;
     }
 }
