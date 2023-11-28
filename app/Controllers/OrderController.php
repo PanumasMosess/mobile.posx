@@ -272,7 +272,8 @@ class OrderController extends BaseController
 
                         $data_mobile_status = [
                             'order_customer_table_code'  => $data[0]['order_customer_table_code'],
-                            'status'  => 'WAIT_PRINT'
+                            'status'  => 'WAIT_PRINT',
+                            'companies_id'  => $data[0]['companies_id']
                         ];
 
                         $mobile_wait_print = $this->MobileOrderModel->insertMobileStatusPrint($data_mobile_status);
@@ -400,7 +401,8 @@ class OrderController extends BaseController
 
                         $data_mobile_status = [
                             'order_customer_table_code'  => $data[0]['order_customer_table_code'],
-                            'status'  => 'WAIT_PRINT'
+                            'status'  => 'WAIT_PRINT',
+                            'companies_id'  => $data[0]['companies_id']
                         ];
 
                         $mobile_wait_print = $this->MobileOrderModel->insertMobileStatusPrint($data_mobile_status);
