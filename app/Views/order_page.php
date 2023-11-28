@@ -78,7 +78,7 @@
                                   <h5 id='total'>฿ 00.00</h5>
                               </li>
                           </ul>
-                          <a href="payment.html" class="btn btn-primary btn-rounded btn-block flex-1 ms-2">CONFIRM</a>
+                          <a href="javascript:void(0);" onclick="confrimCart();" class="btn btn-primary btn-rounded btn-block flex-1 ms-2">CONFIRM</a>
                       </div>
                   </div>
               </div>
