@@ -220,9 +220,10 @@ class OrderController extends BaseController
 
             $ststus_sum_order_code  = $ststus_sum_order_code ?? null;
 
+     
+
             if ($ststus_check->result == 'true') {
                 $order_for_update =  $this->MobileOrderModel->getOrderRunning($data[0]['order_code'],  $data[0]['order_customer_table_code']);
-
                 $data_order = [
                     'order_customer_pcs'  => ($data[0]['order_customer_pcs'] + $order_for_update->order_customer_pcs),
                     'updated_at' => $buffer_datetime,
@@ -341,7 +342,8 @@ class OrderController extends BaseController
                     'order_customer_code'  => $order_running_code,
                     'order_customer_ordername'  => $data[0]['order_customer_ordername'],
                     'order_customer_pcs'  => $data[0]['order_customer_pcs'],
-                    'order_code'   => $data[0]['order_code'],
+                    'order_code'   => $data[0]['order_code'], 
+                    'order_customer_des'   => '',
                     'order_customer_status'   => $data[0]['order_status'],
                     'order_customer'  => '',
                     'order_customer_table_code' => $data[0]['order_customer_table_code'],
