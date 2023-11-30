@@ -140,13 +140,26 @@ class OrderController extends BaseController
     {
         $buffer_datetime = date("Y-m-d H:i:s");
         $data = $_POST["data"];
-        $data_customer_cart_order = [
-            'order_customer_pcs'  => $data[0]['sum_pcs'],
-            'updated_at' => $buffer_datetime,
-            'updated_by'  => $data[0]['table_code']
+        $order_cart_new = false;
+        if ($data[0]['sum_pcs'] == 0) {
+            $data_customer_cart_order = [
+                'order_customer_pcs'  => $data[0]['sum_pcs'],
+                'order_customer_status' => 'CENCEL',
+                'updated_at' => $buffer_datetime,
+                'updated_by'  => $data[0]['table_code']
 
-        ];
-        $order_cart_new = $this->MobileOrderModel->dataInCart($data[0]['id'], $data_customer_cart_order);
+            ];
+            $order_cart_new = $this->MobileOrderModel->dataInCart($data[0]['id'], $data_customer_cart_order);
+        } else {
+            $data_customer_cart_order = [
+                'order_customer_pcs'  => $data[0]['sum_pcs'],
+                'updated_at' => $buffer_datetime,
+                'updated_by'  => $data[0]['table_code']
+
+            ];
+            $order_cart_new = $this->MobileOrderModel->dataInCart($data[0]['id'], $data_customer_cart_order);
+        }
+
 
         if ($order_cart_new) {
             return $this->response->setJSON([
@@ -220,7 +233,7 @@ class OrderController extends BaseController
 
             $ststus_sum_order_code  = $ststus_sum_order_code ?? null;
 
-     
+
 
             if ($ststus_check->result == 'true') {
                 $order_for_update =  $this->MobileOrderModel->getOrderRunning($data[0]['order_code'],  $data[0]['order_customer_table_code']);
@@ -342,7 +355,7 @@ class OrderController extends BaseController
                     'order_customer_code'  => $order_running_code,
                     'order_customer_ordername'  => $data[0]['order_customer_ordername'],
                     'order_customer_pcs'  => $data[0]['order_customer_pcs'],
-                    'order_code'   => $data[0]['order_code'], 
+                    'order_code'   => $data[0]['order_code'],
                     'order_customer_des'   => '',
                     'order_customer_status'   => $data[0]['order_status'],
                     'order_customer'  => '',
