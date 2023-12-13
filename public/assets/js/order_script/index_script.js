@@ -273,6 +273,7 @@ function loadCart(companies, table_code) {
             companies_id: companies,
             order_price_sum: total,
             order_status: "IN_KITCHEN",
+            order_printer_name: response.data[index].printer_name
           },
         ];
         array_cart.push(array_cart_temp);

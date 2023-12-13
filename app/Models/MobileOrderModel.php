@@ -32,7 +32,10 @@ class MobileOrderModel
 
     public function orderMenuDetail($id = null)
     {
-        $sql = "SELECT * FROM `order` WHERE id = '$id' AND order_status != 'CANCEL_ORDER' ORDER BY id DESC";
+        $sql = "SELECT *, a.id as id_order FROM `order` a
+        left join group_product b 
+        on a.group_id = b.id
+        WHERE a.id = '$id' AND a.order_status != 'CANCEL_ORDER' ORDER BY a.id DESC";
         $builder = $this->db->query($sql);
         return $builder->getRow();
     }
@@ -139,7 +142,8 @@ class MobileOrderModel
         return $builder->getRow();
     }
 
-    public function insertOrderPrintLog($data){
+    public function insertOrderPrintLog($data)
+    {
         $builder_print = $this->db->table('order_print_log');
         $builder_print_status = $builder_print->insert($data);
 

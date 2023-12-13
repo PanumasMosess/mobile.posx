@@ -7,6 +7,7 @@ var order_table_code = "";
 var order_companies_id = 0;
 var src_order_picture = "";
 var order_customer_des = "";
+var printer_name = "";
 (function ($) {
   let code_array = searchParams_[1].split("_");
   let id = code_array[0];
@@ -27,6 +28,7 @@ function loadDetail(id_menu) {
       order_price = response.data.order_price;
       src_order_picture = response.data.src_order_picture;  
       order_customer_des = response.data.order_des; 
+      printer_name = response.data.printer_name; 
       let html_menu_detail =
         "<div class='content-body fb'>" +
         "<div class='swiper-btn-center-lr my-0'>" +
@@ -138,7 +140,8 @@ function getToCart() {
       order_price: order_price,
       order_companies_id: order_companies_id,
       src_order_picture: src_order_picture,
-      order_customer_des: order_customer_des
+      order_customer_des: order_customer_des,
+      order_printer_name: printer_name
     },
   ];
 
