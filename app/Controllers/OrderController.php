@@ -98,6 +98,7 @@ class OrderController extends BaseController
                 'order_customer_table_code'  => $data[0]['table_code'],
                 'src_order_picture'  => $data[0]['src_order_picture'],
                 'order_customer_des'  => $data[0]['order_customer_des'],
+                'printer_name'  => $data[0]['order_printer_name'],
                 'created_at' => $buffer_datetime,
                 'created_by'  => $data[0]['table_code'],
                 'companies_id'  => $data[0]['order_companies_id']
@@ -252,6 +253,7 @@ class OrderController extends BaseController
                     'order_customer_ordername' => $data[0]['order_customer_ordername'],
                     'order_customer_pcs'  => $data[0]['order_customer_pcs'],
                     'order_print_status'  => 'WAIT_PRINT',
+                    'printer_name' => $data[0]['order_printer_name'],
                     'created_at'  => $buffer_datetime,
                     'created_by'  => $data[0]['order_customer_table_code'],
                     'companies_id'  => $data[0]['companies_id']
@@ -342,6 +344,7 @@ class OrderController extends BaseController
                     'order_customer_ordername' => $data[0]['order_customer_ordername'],
                     'order_customer_pcs'  => $data[0]['order_customer_pcs'],
                     'order_print_status'  => 'WAIT_PRINT',
+                    'printer_name' => $data[0]['order_printer_name'],
                     'created_at'  => $buffer_datetime,
                     'created_by'  => $data[0]['order_customer_table_code'],
                     'companies_id'  => $data[0]['companies_id']
