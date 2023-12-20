@@ -384,11 +384,11 @@ function loadMenuBytype(id) {
           "</div>" +
           "<div class='item-footer'>" +
           "<div class='d-flex align-items-center'>" +
-          "<h6 class='me-3'>฿ " +
+          "<h6 class='me-3'>" + price_val + "   " +
           response.data[index].order_price +
           "</h6>" +
           "<del class='off-text'>" +
-          "<h6>฿ " +
+          "<h6>" + price_val + "   " +
           "0.00" +
           "</h6>" +
           "</del>" +
