@@ -7,12 +7,13 @@ var order_table_code = "";
 var order_companies_id = 0;
 var src_order_picture = "";
 var order_customer_des = "";
-var printer_name = "";
+var printer_name, price_val = "";
 (function ($) {
   let code_array = searchParams_[1].split("_");
   let id = code_array[0];
   let table = code_array[1];
   let companies_id = code_array[2];
+  loadvalueMoney(companies_id);
   loadDetail(id);
   order_table_code = table;
   order_companies_id = companies_id;
@@ -107,7 +108,7 @@ function loadDetail(id_menu) {
         "<div class='item-list-2'>" +
         "<div class='price'>" +
         "<span class='text-style'>Price</span>" +
-        "<h3>฿ " +
+        "<h3>" + price_val + "   " +
         response.data.order_price +
         " <del>฿ " +
         "0.00" +
@@ -157,6 +158,16 @@ function getToCart() {
         window.history.go(-1);
         return false;
       }
+    },
+  });
+}
+
+function loadvalueMoney(companies) {
+  $.ajax({
+    url: serverUrl + "/priceValue/" + companies,
+    method: "get",
+    success: function (response) {
+      price_val =  response.data.valueMoney;
     },
   });
 }

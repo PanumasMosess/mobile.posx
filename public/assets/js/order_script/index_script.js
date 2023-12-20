@@ -3,16 +3,19 @@ var searchParams_ = searchParams.split("/home/");
 var sum_price_upload_old = 0;
 var sum_pcs_upload_old = 0;
 var companies,
-  table_code = "";
+  table_code,
+  price_val = "";
 var array_cart = [];
 
 (function ($) {
-  loadTypeMenu(searchParams_[1]);
-  loadMenu(searchParams_[1]);
   let code_array = searchParams_[1].split("_");
   companies = code_array[1];
   table_code = code_array[0];
+  loadvalueMoney(companies);
+  loadTypeMenu(searchParams_[1]);
+  loadMenu(searchParams_[1]);
   loadCart(companies, table_code);
+ 
 })(jQuery);
 
 function loadTypeMenu(code) {
@@ -139,11 +142,11 @@ function loadMenu(code) {
           "</div>" +
           "<div class='item-footer'>" +
           "<div class='d-flex align-items-center'>" +
-          "<h6 class='me-3'>฿ " +
+          "<h6 class='me-3'>" + price_val + " " +
           response.data[index].order_price +
           "</h6>" +
           "<del class='off-text'>" +
-          "<h6>฿ " +
+          "<h6>" + price_val + " " +
           "0.00" +
           "</h6>" +
           "</del>" +
@@ -224,7 +227,7 @@ function loadCart(companies, table_code) {
           "</div>" +
           "<div class='item-footer'>" +
           "<div class='d-flex align-items-center'>" +
-          "<h6 class='me-3'>฿ " +
+          "<h6 class='me-3'>" + price_val + "  " +
           response.data[index].order_customer_price +
           "</h6>" +
           "<del class='off-text'>" +
@@ -273,7 +276,7 @@ function loadCart(companies, table_code) {
             companies_id: companies,
             order_price_sum: total,
             order_status: "IN_KITCHEN",
-            order_printer_name: response.data[index].printer_name
+            order_printer_name: response.data[index].printer_name,
           },
         ];
         array_cart.push(array_cart_temp);
@@ -281,9 +284,9 @@ function loadCart(companies, table_code) {
 
       $("#list_card").html(html_menu);
       $("#sub_total").html(
-        "<span  id='sub_total'>฿ " + sub_total.toFixed(2) + "</span>"
+        "<span  id='sub_total'>" + price_val + "  " + sub_total.toFixed(2) + "</span>"
       );
-      $("#total").html("<h5 id='total'>฿ " + total.toFixed(2) + "</h5>");
+      $("#total").html("<h5 id='total'>" + price_val + "  " + total.toFixed(2) + "</h5>");
       $(".stepper").TouchSpin();
 
       sum_price_upload_old = sub_total.toFixed(2);
@@ -507,6 +510,16 @@ function confrimCart() {
     cache: false,
     success: function (response) {
       location.reload();
+    },
+  });
+}
+
+function loadvalueMoney(companies) {
+  $.ajax({
+    url: serverUrl + "/priceValue/" + companies,
+    method: "get",
+    success: function (response) {
+      price_val =  response.data.valueMoney;
     },
   });
 }

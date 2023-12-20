@@ -224,4 +224,12 @@ class MobileOrderModel
 
         return ($builder_summary_status)  ? true : false;
     }
+
+    public function getPriceValue($companies = null)
+    {
+        $sql = "SELECT valueMoney, symbolValueMoney FROM information  WHERE 
+        companies_id ='$companies'";
+        $builder = $this->db->query($sql);
+        return $builder->getRow();
+    }
 }
