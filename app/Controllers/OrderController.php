@@ -210,7 +210,6 @@ class OrderController extends BaseController
         ]);
     }
 
-
     public function insertOrderCustomer()
     {
         $buffer_datetime = date("Y-m-d H:i:s");
@@ -446,5 +445,15 @@ class OrderController extends BaseController
         } else {
             //  ว่าง
         }
+    }
+
+    public function getPriceValue($companies_code = null)
+    {
+        $data =  $this->MobileOrderModel->getPriceValue($companies_code);
+        return $this->response->setJSON([
+            'status' => 200,
+            'error' => false,
+            'data' => $data
+        ]);
     }
 }

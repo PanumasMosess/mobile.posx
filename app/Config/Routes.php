@@ -18,3 +18,4 @@ $routes->post('orderCart', 'OrderController::getOrderCart');
 $routes->post('orderCartUpdate', 'OrderController::orderCartUpdate'); 
 $routes->post('orderMenuSearch', 'OrderController::orderMenuSearch');  
 $routes->post('orderCustomerInsert', 'OrderController::insertOrderCustomer');
+$routes->get('/priceValue/(:any)', 'OrderController::getPriceValue/$1');
