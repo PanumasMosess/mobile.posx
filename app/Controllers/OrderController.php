@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-require __DIR__ . '/vendor/autoload.php';
+
 date_default_timezone_set('Asia/Jakarta');
 
 use App\Controllers\BaseController;
@@ -445,7 +445,7 @@ class OrderController extends BaseController
         if ($check_arr_count == $count_cycle) {
 
             //pusher
-            $pusher = new Pusher\Pusher($this->pusher_Key, $this->pusher_secret, $this->pusher_app_id , array('cluster' => $this->pusher_cluster));
+            $pusher = getPusher();
 
             $pusher->trigger('order-mobile-channel', 'order-mobile-to-server', array('message' => 'order mobile call'));
 
