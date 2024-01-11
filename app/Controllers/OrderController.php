@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+require __DIR__ . '/vendor/autoload.php';
 date_default_timezone_set('Asia/Jakarta');
 
 use App\Controllers\BaseController;
@@ -15,6 +16,12 @@ class OrderController extends BaseController
     {
         // Model Mobile Order
         $this->MobileOrderModel = new \App\Models\MobileOrderModel();
+
+        $this->pusher_Key = getenv('pusher_Key');
+        $this->pusher_app_id = getenv('pusher_app_id');
+        $this->pusher_secret = getenv('pusher_secret');
+        $this->pusher_cluster = getenv('pusher_cluster');
+
     }
 
     public function index()
@@ -436,6 +443,11 @@ class OrderController extends BaseController
         }
 
         if ($check_arr_count == $count_cycle) {
+
+            //pusher
+            $pusher = new Pusher\Pusher($this->pusher_Key, $this->pusher_secret, $this->pusher_app_id , array('cluster' => $this->pusher_cluster));
+
+            $pusher->trigger('order-mobile-channel', 'order-mobile-to-server', array('message' => 'order mobile call'));
 
             return $this->response->setJSON([
                 'status' => 200,
