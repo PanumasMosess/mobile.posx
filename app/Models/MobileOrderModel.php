@@ -25,7 +25,7 @@ class MobileOrderModel
         $sql = "SELECT *, `order`.id as id_order FROM `order` 
         left join `group_product` on 
         `order`.group_id = `group_product`.id 
-        WHERE  `order`.companies_id = '$id_company' AND `order`.order_status != 'CANCEL_ORDER' ORDER BY `order`.id DESC";
+        WHERE  `order`.companies_id = '$id_company' AND `order`.order_status != 'CANCEL_ORDER' ORDER BY `order`.id DESC , `order`.order_menu_recommended DESC ";
         $builder = $this->db->query($sql);
         return $builder->getResult();
     }
@@ -231,5 +231,15 @@ class MobileOrderModel
         companies_id ='$companies'";
         $builder = $this->db->query($sql);
         return $builder->getRow();
+    }
+
+    public function getRecommendd($companies = null)
+    {
+        $sql = "SELECT *, `order`.id as id_order FROM `order` 
+        left join `group_product` on 
+        `order`.group_id = `group_product`.id 
+        WHERE  `order`.companies_id = '$companies' AND `order`.order_status != 'CANCEL_ORDER' AND  `order`.order_menu_recommended = 1 ORDER BY `order`.id DESC";
+        $builder = $this->db->query($sql);
+        return $builder->getResult();
     }
 }

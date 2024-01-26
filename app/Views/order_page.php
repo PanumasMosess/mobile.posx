@@ -17,6 +17,22 @@
                   </div>
               </div>
           </div>
+          <!-- Recomended Start -->
+          <!-- <div id="title_recomend" class="title-bar">
+              <h5 class="title">Recomended 👌</h5>
+          </div>
+
+          <div class="swiper-btn-center-lr" id="clearRecommend">
+              <div class="swiper-container tag-group mt-4 recomanded-swiper">
+                  <div id="menu_recomend" class='swiper-wrapper'>
+
+                  </div>
+              </div>
+          </div> -->
+
+          <!-- <div class="title-bar">
+              <h5 class="title">Menu &#128293;</h5>
+          </div> -->
           <div id="menu_order" class="item-list recent-jobs-list">
           </div>
 

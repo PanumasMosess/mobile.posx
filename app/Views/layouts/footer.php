@@ -6,6 +6,7 @@
 <!-- Swiper -->
 <script src="<?php echo base_url('assets/vendors/nouislider/nouislider.min.js'); ?>"></script>
 <script src="<?php echo base_url('assets/js/dz.carousel.js'); ?>"></script>
+
 <!-- Swiper -->
 <script src="<?php echo base_url('assets/vendors/wnumb/wNumb.js'); ?>"></script>
 <script src="<?php echo base_url('assets/js/noui-slider.init.js'); ?>"></script>

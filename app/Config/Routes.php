@@ -19,3 +19,4 @@ $routes->post('orderCartUpdate', 'OrderController::orderCartUpdate');
 $routes->post('orderMenuSearch', 'OrderController::orderMenuSearch');  
 $routes->post('orderCustomerInsert', 'OrderController::insertOrderCustomer');
 $routes->get('/priceValue/(:any)', 'OrderController::getPriceValue/$1');
+$routes->get('/getRecommendMenu/(:any)', 'OrderController::getRecommendMenu/$1');

@@ -29,7 +29,7 @@ class OrderController extends BaseController
         $data['content'] = '/order_page';
         $data['title'] = 'Menu';
         $data['css_critical'] = '';
-        $data['js_critical'] = '    
+        $data['js_critical'] = '               
             <script src="' . base_url('/assets/js/order_script/index_script.js?v=' . time()) . '"></script>
         ';
         echo view('/app', $data);
@@ -47,6 +47,16 @@ class OrderController extends BaseController
             'status' => 200,
             'error' => false,
             'data' => $list_order_type
+        ]);
+    }
+
+    public function getRecommendMenu($id_company = null)
+    {
+        $list_menu =  $this->MobileOrderModel->getRecommendd($id_company);
+        return $this->response->setJSON([
+            'status' => 200,
+            'error' => false,
+            'data' => $list_menu
         ]);
     }
 
