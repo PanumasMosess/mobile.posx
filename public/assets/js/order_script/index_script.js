@@ -15,7 +15,6 @@ var array_cart = [];
   loadTypeMenu(searchParams_[1]);
   loadMenu(searchParams_[1]);
   loadCart(companies, table_code);
- 
 })(jQuery);
 
 function loadTypeMenu(code) {
@@ -108,6 +107,11 @@ function loadMenu(code) {
     success: function (response) {
       let html_menu = "";
       for (let index = 0; index < response.data.length; index++) {
+        let recomment_menu = "";
+        if(response.data[index].order_menu_recommended == 1){
+          recomment_menu = " &#128293;"
+        }
+
         html_menu +=
           "<h4 class='title my-4'>" +
           "<a href='" +
@@ -117,7 +121,7 @@ function loadMenu(code) {
           "_" +
           searchParams_[1] +
           "'>" +
-          response.data[index].order_name +
+          response.data[index].order_name + recomment_menu +
           "</a>" +
           "</h4>" +
           "<ul>" +
@@ -142,11 +146,15 @@ function loadMenu(code) {
           "</div>" +
           "<div class='item-footer'>" +
           "<div class='d-flex align-items-center'>" +
-          "<h6 class='me-3'>" + price_val + " " +
+          "<h6 class='me-3'>" +
+          price_val +
+          " " +
           response.data[index].order_price +
           "</h6>" +
           "<del class='off-text'>" +
-          "<h6>" + price_val + " " +
+          "<h6>" +
+          price_val +
+          " " +
           "0.00" +
           "</h6>" +
           "</del>" +
@@ -184,6 +192,44 @@ function loadMenu(code) {
       );
     },
   });
+
+  // $.ajax({
+  //   url: serverUrl + "/getRecommendMenu/" + code_array[1],
+  //   method: "get",
+  //   success: function (response) {
+  //     if (response.data.length == 0) {
+  //       $("#title_recomend").html("");
+  //       $("#clearRecommend").html("");
+  //     }
+
+  //     let html_menu = "";
+  //     for (let index = 0; index < response.data.length; index++) {
+  //       html_menu +=
+  //         "<div class='swiper-slide'>" +
+  //         "<div class='recomended-list'>" +
+  //         "<div class='image-box'>" +
+  //         "<img src='assets/images/food/food1.png' alt='image'>" +
+  //         " </div>" +
+  //         " <div class='text-content'>" +
+  //         "  <h6 class='title'>Deluxe Burger with Extra Beef & Eggs</h6>" +
+  //         " <div class='d-flex justify-content-between align-items-center m-t10'>" +
+  //         " <div class='d-flex justify-content-between align-items-center'>" +
+  //         "   <svg width='20' height='21' viewBox='0 0 20 21' fill='none' xmlns='http://www.w3.org/2000/svg'>" +
+  //         "     <path d='M19.3899 9.60002C19.6646 9.31922 19.8559 8.96762 19.9424 8.58445C20.029 8.20128 20.0073 7.80161 19.8799 7.43002C19.7604 7.05733 19.5386 6.72569 19.2398 6.47288C18.941 6.22006 18.5773 6.05622 18.1899 6.00002L13.8999 5.34002C13.8799 5.33422 13.8615 5.32403 13.8459 5.31019C13.8303 5.29635 13.818 5.27921 13.8099 5.26002L11.9299 1.26002C11.7651 0.885457 11.4949 0.56692 11.1522 0.343206C10.8095 0.119491 10.4092 0.000254073 9.99994 1.79599e-05C9.59544 -0.00165464 9.19906 0.113532 8.85846 0.331732C8.51785 0.549932 8.24751 0.861859 8.07994 1.23002L6.19994 5.23002C6.18968 5.24952 6.1755 5.26669 6.15829 5.28046C6.14108 5.29423 6.12122 5.30429 6.09994 5.31002L1.81994 6.00002C1.43203 6.05781 1.06776 6.22206 0.767637 6.47452C0.467513 6.72698 0.243301 7.05774 0.119936 7.43002C-0.00276581 7.8029 -0.0210372 8.20226 0.0671036 8.58479C0.155244 8.96733 0.346433 9.31843 0.619936 9.60002L3.77994 12.85C3.78903 12.8705 3.79373 12.8926 3.79373 12.915C3.79373 12.9374 3.78903 12.9596 3.77994 12.98L3.03994 17.52C2.97114 17.9154 3.01599 18.3222 3.16926 18.6931C3.32253 19.064 3.57794 19.3838 3.90577 19.6152C4.23361 19.8467 4.62042 19.9804 5.02122 20.0007C5.42203 20.021 5.82037 19.9272 6.16994 19.73L9.89994 17.66C9.91847 17.6504 9.93905 17.6453 9.95994 17.6453C9.98082 17.6453 10.0014 17.6504 10.0199 17.66L13.7499 19.73C14.1 19.9229 14.4972 20.0134 14.8963 19.9913C15.2953 19.9691 15.6801 19.835 16.0065 19.6045C16.333 19.374 16.5881 19.0563 16.7425 18.6877C16.897 18.319 16.9446 17.9144 16.8799 17.52L16.1899 13C16.1794 12.9818 16.1739 12.9611 16.1739 12.94C16.1739 12.919 16.1794 12.8983 16.1899 12.88L19.3899 9.60002Z' fill='#FFA902'/>" +
+  //         " </svg>" +
+  //         "   <h5 class='mb-0 ms-2 number'>4.6</h5>" +
+  //         " </div>" +
+  //         " <div>" +
+  //         "    <h5 class='mb-0 ms-2 text-primary'>$ 10.9</h5>" +
+  //         " </div>" +
+  //         " </div>" +
+  //         " </div>" +
+  //         " </div>" +
+  //         " </div> ";
+  //     }
+  //     $("#menu_recomend").html(html_menu);
+  //   },
+  // });
 }
 
 function loadCart(companies, table_code) {
@@ -227,7 +273,9 @@ function loadCart(companies, table_code) {
           "</div>" +
           "<div class='item-footer'>" +
           "<div class='d-flex align-items-center'>" +
-          "<h6 class='me-3'>" + price_val + "  " +
+          "<h6 class='me-3'>" +
+          price_val +
+          "  " +
           response.data[index].order_customer_price +
           "</h6>" +
           "<del class='off-text'>" +
@@ -284,9 +332,15 @@ function loadCart(companies, table_code) {
 
       $("#list_card").html(html_menu);
       $("#sub_total").html(
-        "<span  id='sub_total'>" + price_val + "  " + sub_total.toFixed(2) + "</span>"
+        "<span  id='sub_total'>" +
+          price_val +
+          "  " +
+          sub_total.toFixed(2) +
+          "</span>"
       );
-      $("#total").html("<h5 id='total'>" + price_val + "  " + total.toFixed(2) + "</h5>");
+      $("#total").html(
+        "<h5 id='total'>" + price_val + "  " + total.toFixed(2) + "</h5>"
+      );
       $(".stepper").TouchSpin();
 
       sum_price_upload_old = sub_total.toFixed(2);
@@ -384,11 +438,15 @@ function loadMenuBytype(id) {
           "</div>" +
           "<div class='item-footer'>" +
           "<div class='d-flex align-items-center'>" +
-          "<h6 class='me-3'>" + price_val + "   " +
+          "<h6 class='me-3'>" +
+          price_val +
+          "   " +
           response.data[index].order_price +
           "</h6>" +
           "<del class='off-text'>" +
-          "<h6>" + price_val + "   " +
+          "<h6>" +
+          price_val +
+          "   " +
           "0.00" +
           "</h6>" +
           "</del>" +
@@ -468,11 +526,15 @@ function searchOrder() {
           "</div>" +
           "<div class='item-footer'>" +
           "<div class='d-flex align-items-center'>" +
-          "<h6 class='me-3'>" + price_val + "   " +
+          "<h6 class='me-3'>" +
+          price_val +
+          "   " +
           response.data[index].order_price +
           "</h6>" +
           "<del class='off-text'>" +
-          "<h6>" + price_val + "   " +
+          "<h6>" +
+          price_val +
+          "   " +
           "0.00" +
           "</h6>" +
           "</del>" +
@@ -519,7 +581,7 @@ function loadvalueMoney(companies) {
     url: serverUrl + "/priceValue/" + companies,
     method: "get",
     success: function (response) {
-      price_val =  response.data.valueMoney;
+      price_val = response.data.valueMoney;
     },
   });
 }
