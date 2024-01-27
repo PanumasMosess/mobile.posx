@@ -34,6 +34,7 @@
               <h5 class="title">Menu &#128293;</h5>
           </div> -->
           <div id="menu_order" class="item-list recent-jobs-list">
+            <input id="sumOrder_count" type="hidden" />
           </div>
 
           <!-- CART -->

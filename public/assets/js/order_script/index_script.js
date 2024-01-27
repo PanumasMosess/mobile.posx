@@ -2,6 +2,7 @@ var searchParams = window.location.pathname;
 var searchParams_ = searchParams.split("/home/");
 var sum_price_upload_old = 0;
 var sum_pcs_upload_old = 0;
+var count_order = 0;
 var companies,
   table_code,
   price_val = "";
@@ -105,11 +106,12 @@ function loadMenu(code) {
     url: serverUrl + "/orderMenu/" + code_array[1],
     method: "get",
     success: function (response) {
+      count_order = response.data.length;
       let html_menu = "";
       for (let index = 0; index < response.data.length; index++) {
         let recomment_menu = "";
-        if(response.data[index].order_menu_recommended == 1){
-          recomment_menu = " &#128293;"
+        if (response.data[index].order_menu_recommended == 1) {
+          recomment_menu = " &#128293;";
         }
 
         html_menu +=
@@ -121,7 +123,8 @@ function loadMenu(code) {
           "_" +
           searchParams_[1] +
           "'>" +
-          response.data[index].order_name + recomment_menu +
+          response.data[index].order_name +
+          recomment_menu +
           "</a>" +
           "</h4>" +
           "<ul>" +
@@ -582,6 +585,111 @@ function loadvalueMoney(companies) {
     method: "get",
     success: function (response) {
       price_val = response.data.valueMoney;
+    },
+  });
+}
+
+$(window).on("scroll", function () {
+  if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+    loadMunuScroll();
+  }
+});
+
+function loadMunuScroll() {
+  let code_array = searchParams_[1].split("_");
+
+  let sumOrder_count = count_order;
+  console.log(sumOrder_count);
+  sumOrder_count = sumOrder_count + 1;
+  arr_data = [
+    {
+      companies_code: code_array[1],
+      order_sum_count: sumOrder_count,
+    },
+  ];
+
+  $.ajax({
+    url: serverUrl + "/orderMenuPlus",
+    method: "post",
+    data: {
+      data: arr_data,
+    },
+    success: function (response) {
+      count_order = response.data.length;
+      let html_menu = "";
+      for (let index = 0; index < response.data.length; index++) {
+        let recomment_menu = "";
+        if (response.data[index].order_menu_recommended == 1) {
+          recomment_menu = " &#128293;";
+        }
+
+        html_menu +=
+          "<h4 class='title my-4'>" +
+          "<a href='" +
+          serverUrl +
+          "details/" +
+          response.data[index].id_order +
+          "_" +
+          searchParams_[1] +
+          "'>" +
+          response.data[index].order_name +
+          recomment_menu +
+          "</a>" +
+          "</h4>" +
+          "<ul>" +
+          "<li>" +
+          "<div class='item-content'>" +
+          "<div class='item-inner'>" +
+          " <div class='item-title-row'>" +
+          " <h6 class='item-title'>" +
+          "<a href='" +
+          serverUrl +
+          "details/" +
+          response.data[index].id_order +
+          "_" +
+          searchParams_[1] +
+          "'>" +
+          response.data[index].order_des +
+          "</a>" +
+          "</h6>" +
+          "<div class='item-subtitle'>" +
+          response.data[index].name +
+          "</div>" +
+          "</div>" +
+          "<div class='item-footer'>" +
+          "<div class='d-flex align-items-center'>" +
+          "<h6 class='me-3'>" +
+          price_val +
+          " " +
+          response.data[index].order_price +
+          "</h6>" +
+          "<del class='off-text'>" +
+          "<h6>" +
+          price_val +
+          " " +
+          "0.00" +
+          "</h6>" +
+          "</del>" +
+          "</div>" +
+          "<div class='d-flex align-items-center'>" +
+          "<i class='fa-solid fa-star'></i>" +
+          "<h6>4.5</h6>" +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          "<div class='item-media media media-90'>" +
+          "<img src='" +
+          CDN_IMG +
+          "/uploads/temps_order/" +
+          response.data[index].src_order_picture +
+          "' alt='logo' width='100' height='100' />" +
+          "</div>" +
+          "</div>" +
+          "</li>" +
+          "</ul>" +
+          "<div class='saprater'></div>";
+      }
+      $("#menu_order").html(html_menu);
     },
   });
 }
