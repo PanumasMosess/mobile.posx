@@ -25,10 +25,20 @@ class MobileOrderModel
         $sql = "SELECT *, `order`.id as id_order FROM `order` 
         left join `group_product` on 
         `order`.group_id = `group_product`.id 
-        WHERE  `order`.companies_id = '$id_company' AND `order`.order_status != 'CANCEL_ORDER' ORDER BY `order`.id DESC , `order`.order_menu_recommended DESC ";
+        WHERE  `order`.companies_id = '$id_company' AND `order`.order_status != 'CANCEL_ORDER' ORDER BY `order`.id DESC , `order`.order_menu_recommended DESC LIMIT 4";
         $builder = $this->db->query($sql);
         return $builder->getResult();
-    }
+    }  
+
+    public function getMenuScroll($id_company = null, $limit_plus = null)
+    {
+        $sql = "SELECT *, `order`.id as id_order FROM `order` 
+        left join `group_product` on 
+        `order`.group_id = `group_product`.id 
+        WHERE  `order`.companies_id = '$id_company' AND `order`.order_status != 'CANCEL_ORDER' ORDER BY `order`.id DESC , `order`.order_menu_recommended DESC LIMIT $limit_plus";
+        $builder = $this->db->query($sql);
+        return $builder->getResult();
+    } 
 
     public function orderMenuDetail($id = null)
     {

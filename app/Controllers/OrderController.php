@@ -70,6 +70,18 @@ class OrderController extends BaseController
         ]);
     }
 
+    public function getMenuScroll($id_company = null)
+    {
+        $data = $_POST["data"];
+
+        $list_menu =  $this->MobileOrderModel->getMenuScroll($data[0]['companies_code'], $data[0]['order_sum_count']);
+        return $this->response->setJSON([
+            'status' => 200,
+            'error' => false,
+            'data' => $list_menu
+        ]);
+    }
+
     public function orderMenuDetail($id_detail = null)
     {
         $data =  $this->MobileOrderModel->orderMenuDetail($id_detail);

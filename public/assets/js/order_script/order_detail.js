@@ -155,8 +155,8 @@ function getToCart() {
     cache: false,
     success: function (response) {
       if (response.message == "เพิ่มสำเร็จ") {
-        window.history.go(-1);
-        return false;
+        // window.history.go(-1);
+        // return false;
       }
     },
   });
