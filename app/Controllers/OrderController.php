@@ -109,6 +109,9 @@ class OrderController extends BaseController
         $order_cart_new = false;
         $order_in_cart = $this->MobileOrderModel->checkOrderIncart($data[0]['order_code'], $data[0]['order_companies_id']);
         $count_order = count($order_in_cart);
+
+        var_dump($count_order);
+        exit;
         if ($count_order > 0) {
             $data_customer_cart_order = [
                 'order_customer_pcs'  => $data[0]['pcs'] + $order_in_cart[0]->order_customer_pcs,
