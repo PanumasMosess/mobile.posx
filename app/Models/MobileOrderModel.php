@@ -72,9 +72,9 @@ class MobileOrderModel
         return $builder->getResult();
     }
 
-    public function checkOrderIncart($order_code = null, $compnies_code = null)
+    public function checkOrderIncart($order_code = null, $compnies_code = null, $table_code = null)
     {
-        $sql = "SELECT * FROM `posx_cart` WHERE order_code = '$order_code' AND companies_id = '$compnies_code' AND  order_customer_status = 'CART' ORDER BY id DESC";
+        $sql = "SELECT * FROM `posx_cart` WHERE order_code = '$order_code' AND companies_id = '$compnies_code' AND  order_customer_status = 'CART' AND order_customer_table_code = '$table_code' ORDER BY id DESC";
         $builder = $this->db->query($sql);
         return $builder->getResult();
     }
