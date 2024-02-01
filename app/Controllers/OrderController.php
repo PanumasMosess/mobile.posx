@@ -423,6 +423,31 @@ class OrderController extends BaseController
 
                 $create_new = $this->MobileOrderModel->insertOrderCustomer($data_customer_order, $data_code, $count_cycle, $ststus_sum_order_code);
 
+                $get_formulars = $this->OrderModel->getOutofstock($data[0]['order_code']);
+
+                if (count($get_formulars) != 0) {
+                    foreach ($get_formulars as $get_formular) {
+                        $result_pcs_stock =  $this->OrderModel->getStockTransectionUpdate($get_formular->stock_code);
+                        $data_balance = $result_pcs_stock->pcs -  ($get_formular->formula_pcs * $data[0]['order_customer_pcs']);
+
+                        $data_transec = [
+                            'stock_code' => $get_formular->stock_code,
+                            'begin' => $result_pcs_stock->pcs,
+                            'sold' => ($get_formular->formula_pcs * $data[0]['order_customer_pcs']),
+                            'balance' => $data_balance,
+                            'created_at' => $buffer_datetime
+                        ];
+
+                        $data_stock_posx = [
+                            'pcs' => $data_balance,
+                            'updated_by' => session()->get('username'),
+                            'updated_at' => $buffer_datetime
+                        ];
+
+                        $result =  $this->OrderModel->updateTransectionSold($get_formular->stock_code, $data_transec, $data_stock_posx);
+                    }
+                }
+
                 if ($create_new) {
                     $count_cycle++;
                     if ($check_arr_count == $count_cycle) {
