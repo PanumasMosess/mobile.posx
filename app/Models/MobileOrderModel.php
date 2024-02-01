@@ -252,4 +252,38 @@ class MobileOrderModel
         $builder = $this->db->query($sql);
         return $builder->getResult();
     }
+
+    public function getStockTransectionUpdate($stock_code = null)
+    {
+        $sql = "SELECT * FROM stock_posx 
+        where stock_code = '$stock_code'
+        ORDER BY stock_code DESC
+        ";
+        $builder = $this->db->query($sql);
+        return $builder->getRow();
+    }
+
+    public function getOutofstock($code = null)
+    {
+        $sql = "SELECT * FROM stock_formula 
+        where order_code = '$code'
+        ORDER BY order_code DESC
+        ";
+        $builder = $this->db->query($sql);
+        return $builder->getResult();
+    }
+
+    public function updateTransectionSold($stock_code, $data_trans, $stock_pcs)
+    {
+
+        $builder_stock_transaction = $this->db->table('stock_transaction');
+        $builder_stock_transaction_status = $builder_stock_transaction->insert($data_trans);
+
+        $builder_stock_pcs = $this->db->table('stock_posx');
+        $array_stock_pcs = array('stock_code' => $stock_code, 'status_stock' => 'IN_STOCK');
+        $builder_stock_pcs_status = $builder_stock_pcs->where($array_stock_pcs)->update($stock_pcs);
+
+
+        return ($builder_stock_pcs_status && $builder_stock_transaction_status) ? true : false;
+    }
 }

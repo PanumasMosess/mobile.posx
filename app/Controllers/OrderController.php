@@ -423,11 +423,11 @@ class OrderController extends BaseController
 
                 $create_new = $this->MobileOrderModel->insertOrderCustomer($data_customer_order, $data_code, $count_cycle, $ststus_sum_order_code);
 
-                $get_formulars = $this->OrderModel->getOutofstock($data[0]['order_code']);
+                $get_formulars = $this->MobileOrderModel->getOutofstock($data[0]['order_code']);
 
                 if (count($get_formulars) != 0) {
                     foreach ($get_formulars as $get_formular) {
-                        $result_pcs_stock =  $this->OrderModel->getStockTransectionUpdate($get_formular->stock_code);
+                        $result_pcs_stock =  $this->MobileOrderModel->getStockTransectionUpdate($get_formular->stock_code);
                         $data_balance = $result_pcs_stock->pcs -  ($get_formular->formula_pcs * $data[0]['order_customer_pcs']);
 
                         $data_transec = [
@@ -444,7 +444,7 @@ class OrderController extends BaseController
                             'updated_at' => $buffer_datetime
                         ];
 
-                        $result =  $this->OrderModel->updateTransectionSold($get_formular->stock_code, $data_transec, $data_stock_posx);
+                        $result =  $this->MobileOrderModel->updateTransectionSold($get_formular->stock_code, $data_transec, $data_stock_posx);
                     }
                 }
 
