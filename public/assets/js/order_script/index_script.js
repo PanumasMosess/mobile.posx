@@ -702,11 +702,19 @@ function loadMunuScroll() {
           "</div>" +
           "</div>" +
           "<div class='item-media media media-90'>" +
+          "<a href='" +
+          serverUrl +
+          "details/" +
+          response.data[index].id_order +
+          "_" +
+          searchParams_[1] +
+          "'>" +
           "<img src='" +
           CDN_IMG +
           "/uploads/temps_order/" +
           response.data[index].src_order_picture +
           "' alt='logo' width='100' height='100' />" +
+          "</a>" +
           "</div>" +
           "</div>" +
           "</li>" +
