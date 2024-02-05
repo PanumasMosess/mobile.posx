@@ -42,7 +42,7 @@ function loadDetail(id_menu) {
         CDN_IMG +
         "/uploads/temps_order/" +
         response.data.src_order_picture +
-        "' class='bnr-img' alt='bg-image' width='500' height='500'>" +
+        "' class='bnr-img' alt='bg-image' width='450' height='450'>" +
         "</div>" +
         "</div>" +
         "</div>" +
