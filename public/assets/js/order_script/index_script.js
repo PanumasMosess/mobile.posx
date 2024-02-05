@@ -599,7 +599,7 @@ function confrimCart() {
     cache: false,
     success: function (response) {
       loadCart(companies, table_code);
-      ('#offcanvasBottom2').removeClass('show');
+      $('#offcanvasBottom2').removeClass('show');
     },
   });
 }
