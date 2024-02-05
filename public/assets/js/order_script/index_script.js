@@ -598,7 +598,7 @@ function confrimCart() {
     },
     cache: false,
     success: function (response) {
-      location.reload();
+      // location.reload();
     },
   });
 }
