@@ -477,12 +477,8 @@ class OrderController extends BaseController
                     $count_cycle++;
                     if ($check_arr_count == $count_cycle) {
                         if ($ststus_sum_check->result == 'false') {
-                            var_dump('False');
-                            exit;
                             $create_new2 = $this->MobileOrderModel->insertOrderCustomerSummary($data_summary, $data_status_table, $table_code);
                         } else  if ($ststus_sum_check->result == 'true') {
-                            var_dump('true');
-                            exit;
                             $summary_for_update =  $this->MobileOrderModel->getOrderSummaryRuning($data[0]['order_customer_table_code']);
                             $data_order_summary = [
                                 'order_price_sum' => ($data[0]['order_price_sum'] + $summary_for_update->order_price_sum),
