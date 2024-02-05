@@ -263,7 +263,8 @@ class OrderController extends BaseController
 
             $ststus_sum_order_code  = $ststus_sum_order_code ?? null;
 
-
+            var_dump($ststus_check->result);
+            exit;
 
             if ($ststus_check->result == 'true') {
                 $order_for_update =  $this->MobileOrderModel->getOrderRunning($data[0]['order_code'],  $data[0]['order_customer_table_code']);
