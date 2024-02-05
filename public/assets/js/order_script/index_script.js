@@ -598,7 +598,8 @@ function confrimCart() {
     },
     cache: false,
     success: function (response) {
-      // location.reload();
+      loadCart(companies, table_code);
+      ('#offcanvas').hide();
     },
   });
 }
