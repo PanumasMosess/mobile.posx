@@ -264,6 +264,7 @@ function loadCart(companies, table_code) {
       let html_menu = "";
       let sub_total = 0;
       let total = 0;
+      array_cart = [];
       for (let index = 0; index < response.data.length; index++) {
         html_menu +=
           "<li>" +
